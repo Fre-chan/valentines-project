@@ -75,75 +75,63 @@ p {
   transition: opacity 1.5s ease-in-out;
 }
 
-/* Love Letter */
+/* Love Letter GIF Styling */
 .love-letter-container {
-  position: relative;
-  width: 150px;
-  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 20px auto;
+}
+
+.love-letter-gif {
+  max-width: 250px;
+  height: auto;
   cursor: pointer;
-}
-
-.envelope {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #ff4d6d;
   border-radius: 10px;
-  overflow: hidden;
-}
-
-.flap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 50%;
-  background: #e63950;
-  transform-origin: top;
-  transition: transform 0.5s ease-in-out;
-}
-
-.letter {
-  position: absolute;
-  width: 90%;
-  height: 80%;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  transform: translateY(100%);
-  transition: transform 0.5s ease-in-out;
-  text-align: center;
-  font-size: 14px;
-}
-
-.love-letter-container.open .flap {
-  transform: rotateX(180deg);
-}
-
-.love-letter-container.open .letter {
-  transform: translateY(0);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Flipbook Animation */
 .gallery {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  --d: 10s;
+  display: grid;
+  place-items: center;
   width: 220px;
   margin: 20px auto;
 }
 
-.gallery img {
+.gallery > img {
+  grid-area: 1/1;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   border: 10px solid #f2f2f2;
   box-shadow: 0 0 4px #0007;
   z-index: 2;
-  animation: flip 10s infinite;
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
 }
 
-@keyframes flip {
-  10% { transform: translateX(120%) rotate(16deg); }
-  0%, 100%, 20% { transform: translateX(0%) rotate(0deg); }
+.gallery img:last-child {
+  animation-name: slide, z-order-last;
+}
+
+.gallery > img:nth-child(1) { animation-delay: 0s; --r: 16deg; }
+.gallery > img:nth-child(2) { animation-delay: -2s; --r: -1deg; }
+.gallery > img:nth-child(3) { animation-delay: -4s; --r: -19deg; }
+.gallery > img:nth-child(4) { animation-delay: -6s; --r: 6deg; }
+.gallery > img:nth-child(5) { animation-delay: -8s; --r: -8deg; }
+
+@keyframes slide {
+  10% { transform: translateX(120%) rotate(var(--r)); }
+  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+}
+
+@keyframes z-order {
+  10%, 20% { z-index: 1; }
+  80% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+  10%, 20% { z-index: 1; }
+  90% { z-index: 2; }
 }
