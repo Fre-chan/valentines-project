@@ -7,25 +7,38 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="main-content">
       <h1>Will You Be My Valentine? 💖</h1>
       <p>You can't say no! 😆</p>
       <div class="btn-group">
-        <a href="yes.html" class="yes-btn">Yes 💘</a>
+        <button id="yes-btn">Yes 💘</button>
         <button id="no-btn">No 💔</button>
       </div>
     </div>
 
-    <!-- Love Letter -->
-    <div class="love-letter-container" id="love-letter">
-      <div class="envelope">
-        <div class="flap"></div>
-        <div class="letter">
-          <p>Dear Love,</p>
-          <p>You make my heart skip a beat! 💖</p>
-          <p>Forever yours,</p>
-          <p>💘</p>
+    <!-- Love Letter with Fade-in Effect -->
+    <div id="love-letter-page" class="hidden fade-in">
+      <div class="love-letter-container">
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="letter">
+            <p>Dear Love,</p>
+            <p>You make my heart skip a beat! 💖</p>
+            <p>Forever yours,</p>
+            <p>💘</p>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Flipbook Page (Hidden Initially) -->
+    <div id="flipbook-page" class="hidden">
+      <div class="gallery">
+        <img src="images/selfie-kiss.png" alt="a lovely kiss in the night">
+        <img src="https://picsum.photos/id/1013/400/400" alt="a woman inside a car">
+        <img src="images/girl-and-boy-romantic-love.png" alt="a baby">
+        <img src="images/couple-girl-boy-love.png" alt="a couple in love">
+        <img src="images/photo-love.png" alt="a girl">
       </div>
     </div>
 
