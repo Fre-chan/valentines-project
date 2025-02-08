@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContent = document.getElementById("main-content");
   const loveLetterPage = document.getElementById("love-letter-page");
   const flipbookPage = document.getElementById("flipbook-page");
-  const loveLetter = document.querySelector(".love-letter-container");
+  const loveLetter = document.getElementById("love-letter");
 
-  // No button runs away when hovered
+  // "No" button runs away when hovered
   noBtn.addEventListener("mouseenter", function () {
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     noBtn.style.top = `${y}px`;
   });
 
-  // When "Yes" button is clicked - Fade-in effect
+  // When "Yes" button is clicked - Show love letter with fade-in effect
   yesBtn.addEventListener("click", function () {
     mainContent.style.display = "none"; // Hide main content
     loveLetterPage.classList.remove("hidden");
@@ -24,9 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   });
 
-  // Click Love Letter - Flipbook Animation
+  // Click Love Letter - Open envelope and reveal flipbook animation
   loveLetter.addEventListener("click", function () {
-    loveLetterPage.style.display = "none"; // Hide love letter
-    flipbookPage.classList.remove("hidden"); // Show flipbook animation
+    loveLetter.classList.add("open"); // Open envelope
+    setTimeout(() => {
+      loveLetterPage.style.display = "none"; // Hide love letter
+      flipbookPage.classList.remove("hidden"); // Show flipbook animation
+    }, 1000);
   });
 });
