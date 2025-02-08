@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     noBtn.style.top = `${y}px`;
   });
 
-  // When "Yes" button is clicked - Fade-in effect
+  // When "Yes" button is clicked - Show Yay Page
   yesBtn.addEventListener("click", function () {
     mainContent.style.display = "none"; // Hide main content
     yayPage.classList.remove("hidden");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   });
 
-  // Click Love Letter - Flipbook Animation
+  // Clicking Love Letter Opens Flipbook
   loveLetter.addEventListener("click", function () {
     yayPage.style.display = "none"; // Hide love letter
     flipbookPage.classList.remove("hidden"); // Show flipbook animation
