@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const yesBtn = document.getElementById("yes-btn");
   const mainContent = document.getElementById("main-content");
   const yayPage = document.getElementById("yay-page");
+  const loveLetterPage = document.getElementById("love-letter-page");
   const flipbookPage = document.getElementById("flipbook-page");
   const loveLetter = document.querySelector(".love-letter-container");
 
@@ -15,18 +16,23 @@ document.addEventListener("DOMContentLoaded", function () {
     noBtn.style.top = `${y}px`;
   });
 
-  // When "Yes" button is clicked - Fade-in effect
+  // When "Yes" button is clicked - Show Yay Page
   yesBtn.addEventListener("click", function () {
     mainContent.style.display = "none"; // Hide main content
     yayPage.classList.remove("hidden");
     setTimeout(() => {
       yayPage.style.opacity = "1"; // Fade-in effect
     }, 100);
+
+    // Show Love Letter after a delay
+    setTimeout(() => {
+      loveLetterPage.classList.remove("hidden");
+    }, 1500);
   });
 
-  // Click Love Letter - Flipbook Animation
+  // Clicking Love Letter Opens Flipbook
   loveLetter.addEventListener("click", function () {
-    yayPage.style.display = "none"; // Hide love letter
+    loveLetterPage.style.display = "none"; // Hide love letter
     flipbookPage.classList.remove("hidden"); // Show flipbook animation
   });
 });
