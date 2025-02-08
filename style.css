@@ -1,3 +1,4 @@
+/* General Styling */
 * {
   margin: 0;
   padding: 0;
@@ -75,12 +76,18 @@ p {
   transition: opacity 1.5s ease-in-out;
 }
 
-/* Love Letter GIF Styling */
-.love-letter-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
+/* GIF Styling */
+.pleading-gif {
+  max-width: 200px;
+  height: auto;
+  margin-top: 15px;
+}
+
+.happy-gif {
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .love-letter-gif {
@@ -115,15 +122,9 @@ p {
   animation-name: slide, z-order-last;
 }
 
-.gallery > img:nth-child(1) { animation-delay: 0s; --r: 16deg; }
-.gallery > img:nth-child(2) { animation-delay: -2s; --r: -1deg; }
-.gallery > img:nth-child(3) { animation-delay: -4s; --r: -19deg; }
-.gallery > img:nth-child(4) { animation-delay: -6s; --r: 6deg; }
-.gallery > img:nth-child(5) { animation-delay: -8s; --r: -8deg; }
-
 @keyframes slide {
-  10% { transform: translateX(120%) rotate(var(--r)); }
-  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+  10% { transform: translateX(120%) rotate(10deg); }
+  0%, 100%, 20% { transform: translateX(0%) rotate(-10deg); }
 }
 
 @keyframes z-order {
