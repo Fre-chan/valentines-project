@@ -126,13 +126,12 @@ p {
 /* Flipbook Animation */
 /* Center Flipbook */
 .gallery {
-  --d: 10s; /* Animation duration */
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  width: 220px;
-  margin: auto; /* Auto margin for centering */
-  position: relative;
+  --d: 10s;
+  /* duration */
+  display: grid;
+  place-items: center; /* Center both horizontally and vertically */
+  width: 150px;
+  margin-left: 60px;
 }
 
 .gallery > img {
