@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Letter 💌</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Now, Baby please open the love letter! Hehe >3<</h1>
+
+      <!-- Love Letter GIF (Clickable) -->
+      <img 
+        src="images/love-letter.gif" 
+        alt="Love Letter Animation" 
+        class="love-letter-gif"
+        id="love-letter"
+      />
+    </div>
+
+    <script>
+      // When the love letter GIF is clicked, go to flipbook page
+      document.getElementById("love-letter").addEventListener("click", function () {
+        window.location.href = "flipbook.html";
+      });
+    </script>
+  </body>
+</html>

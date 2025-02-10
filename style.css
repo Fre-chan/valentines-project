@@ -65,6 +65,23 @@ p {
   background: #888;
 }
 
+#next-btn {
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+#next-btn:hover {
+  background: #e63950;
+}
+
+
 /* Hide Sections Initially */
 .hidden {
   display: none;
