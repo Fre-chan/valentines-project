@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show Love Letter after a delay
     setTimeout(() => {
       loveLetterPage.classList.remove("hidden");
+      loveLetterPage.style.display = "block"; // Ensure it appears
     }, 1500);
   });
 
@@ -34,5 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
   loveLetter.addEventListener("click", function () {
     loveLetterPage.style.display = "none"; // Hide love letter
     flipbookPage.classList.remove("hidden"); // Show flipbook animation
+    flipbookPage.style.display = "block";
   });
 });
