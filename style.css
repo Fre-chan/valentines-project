@@ -88,6 +88,7 @@ p {
   height: auto;
   border-radius: 10px;
   margin-top: 10px;
+  margin-bottom: 20px; /* Ensures spacing before love letter */
 }
 
 .love-letter-gif {
@@ -97,6 +98,7 @@ p {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Flipbook Animation */
 .gallery {

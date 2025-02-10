@@ -20,21 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
   yesBtn.addEventListener("click", function () {
     mainContent.style.display = "none"; // Hide main content
     yayPage.classList.remove("hidden");
+    yayPage.style.display = "block"; // Ensure it's visible
+
     setTimeout(() => {
       yayPage.style.opacity = "1"; // Fade-in effect
     }, 100);
 
-    // Show Love Letter after a delay
+    // Show Love Letter after a delay (1.5s)
     setTimeout(() => {
       loveLetterPage.classList.remove("hidden");
-      loveLetterPage.style.display = "block"; // Ensure it appears
+      loveLetterPage.style.display = "block"; // Ensure it's visible
     }, 1500);
   });
 
   // Clicking Love Letter Opens Flipbook
   loveLetter.addEventListener("click", function () {
     loveLetterPage.style.display = "none"; // Hide love letter
-    flipbookPage.classList.remove("hidden"); // Show flipbook animation
+    flipbookPage.classList.remove("hidden");
     flipbookPage.style.display = "block";
   });
 });
