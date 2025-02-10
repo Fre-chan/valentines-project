@@ -6,10 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextBtn = document.getElementById("next-btn");
   const loveSong = document.getElementById("loveSong");
 
-  // Function to play song from chorus (1:04 mark)
+  // Function to play song from chorus (2:07 mark)
   function playSong() {
-    loveSong.currentTime = 64; // Start from chorus
-    loveSong.play();
+    if (loveSong) {
+      loveSong.currentTime = 127; // Start at 2:07
+      loveSong.volume = 0.3; // Set volume to 30%
+      loveSong.play();
+    }
   }
 
   // "No" button runs away when hovered
@@ -31,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         yayPage.style.opacity = "1"; // Fade-in effect
       }, 100);
-      playSong(); // Play the song when "Yes" is clicked
     });
   }
 
@@ -40,5 +42,22 @@ document.addEventListener("DOMContentLoaded", function () {
     nextBtn.addEventListener("click", function () {
       window.location.href = "love-letter.html";
     });
+  }
+
+  // 🎶 Play song when the flipbook appears (on Love Letter page)
+  if (window.location.pathname.includes("love-letter.html")) {
+    let flipbookPage = document.querySelector(".gallery"); // Flipbook container
+
+    let observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playSong(); // Play the song when flipbook is visible
+        }
+      });
+    }, { threshold: 0.5 }); // Play when at least 50% of flipbook is visible
+
+    if (flipbookPage) {
+      observer.observe(flipbookPage);
+    }
   }
 });
