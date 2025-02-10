@@ -18,7 +18,7 @@ body {
 
 .container {
   background: white;
-  padding: 20px;
+  padding: 0px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
@@ -125,28 +125,27 @@ p {
 
 /* Flipbook Animation */
 /* Center Flipbook */
-/* Flipbook Container */
 .gallery {
-  --d: 1.5s; /* Speed per flip */
+  --d: 10s; /* Duration of full flip animation */
   display: grid;
-  place-items: center;
-  width: 200px;
-  height: 250px;
+  place-items: center; /* Center horizontally & vertically */
+  width: 200px; /* Adjust width */
+  height: 250px; /* Adjust height */
   position: relative;
 }
 
-/* Flipbook Images */
 .gallery > img {
   grid-area: 1/1;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border: 10px solid white;
+  border: 10px solid white; /* Polaroid-style border */
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   position: absolute;
-  opacity: 0; /* Start hidden */
-  z-index: 1;
-  animation: flip var(--d) linear infinite;
+  z-index: 1; /* Ensuring proper stacking */
+  opacity: 0; /* Initially hidden */
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+  transform-origin: center;
 }
 
 /* Ensuring all 17 images have different animation delays & rotation angles */
