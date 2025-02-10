@@ -11,16 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loveSong) {
       loveSong.currentTime = 127; // Start at 2:07
       loveSong.volume = 0.3; // Set volume to 30%
-      loveSong.play().catch(error => {
-        console.log("Autoplay blocked, waiting for user interaction.");
+      loveSong.play().then(() => {
+        console.log("🎶 Song is playing automatically.");
+      }).catch(error => {
+        console.log("❌ Autoplay blocked. Trying workaround...");
+        // Trick: Play muted first, then unmute (bypasses restrictions)
+        loveSong.muted = true;
+        loveSong.play().then(() => {
+          loveSong.muted = false; // Unmute after starting
+        });
       });
     }
   }
 
-  // 🎶 Play song when user interacts with the page (Fix autoplay block)
-  function enableAudio() {
-    playSong();
-    document.removeEventListener("click", enableAudio);
+  // Autoplay when flipbook page loads
+  if (window.location.pathname.includes("flipbook.html")) {
+    setTimeout(playSong, 500); // Small delay to ensure audio is ready
   }
 
   // Check if we are on the flipbook page
