@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContent = document.getElementById("main-content");
   const yayPage = document.getElementById("yay-page");
   const nextBtn = document.getElementById("next-btn");
-  let loveSong = document.getElementById("loveSong");
+  const loveSong = document.getElementById("loveSong");
 
   // Function to play song from chorus (1:04 mark)
   function playSong() {
@@ -12,22 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loveSong.play();
   }
 
-  // Detect when the flipbook page becomes visible
-  let flipbookPage = document.querySelector(".gallery"); // Change this if flipbook container has a different class
-
-  let observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        playSong(); // Play the song when flipbook becomes visible
-      } else {
-        loveSong.pause(); // Pause when flipbook is out of view
-      }
-    });
-  }, { threshold: 0.5 }); // Detect when at least 50% of flipbook is visible
-
-  observer.observe(flipbookPage); // Attach observer to flipbook
-
-  // No button runs away when hovered
+  // "No" button runs away when hovered
   if (noBtn) {
     noBtn.addEventListener("mouseenter", function () {
       const x = Math.random() * (window.innerWidth - 100);
@@ -46,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         yayPage.style.opacity = "1"; // Fade-in effect
       }, 100);
+      playSong(); // Play the song when "Yes" is clicked
     });
   }
 
