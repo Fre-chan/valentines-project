@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function playSong() {
     if (loveSong) {
       loveSong.currentTime = 127; // Start at 2:07
-      loveSong.volume = 0.3; // Set volume to 30%
+      loveSong.volume = 0.1; // Set volume to 30%
       loveSong.play().then(() => {
         console.log("🎶 Song is playing automatically.");
       }).catch(error => {
@@ -29,11 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(playSong, 500); // Small delay to ensure audio is ready
   }
 
-  // Check if we are on the flipbook page
-  if (window.location.pathname.includes("flipbook.html")) {
-    // Play song after user clicks anywhere
-    document.addEventListener("click", enableAudio);
-  }
 
   // "No" button runs away when hovered
   if (noBtn) {
@@ -64,20 +59,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 🎶 Play song when the flipbook appears (on Love Letter page)
-  if (window.location.pathname.includes("love-letter.html")) {
-    let flipbookPage = document.querySelector(".gallery"); // Flipbook container
-
-    let observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          playSong(); // Play the song when flipbook is visible
-        }
-      });
-    }, { threshold: 0.5 }); // Play when at least 50% of flipbook is visible
-
-    if (flipbookPage) {
-      observer.observe(flipbookPage);
-    }
-  }
 });
