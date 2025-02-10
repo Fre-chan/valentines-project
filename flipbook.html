@@ -29,5 +29,25 @@
         <img src="images/wefie6.jpg" alt="wefie6">
       </div>
     </div>
+
+    <!-- Audio -->
+    <audio id="loveSong" preload="auto">
+      <source src="audio/athousandyears.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      function playSong() {
+        let loveSong = document.getElementById("loveSong");
+        loveSong.volume = 0.3; // Set volume to 30%
+        loveSong.currentTime = 127; // Start at 02:07 (127 seconds)
+        loveSong.play();
+      }
+
+      // Play song when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        playSong();
+      });
+    </script>
   </body>
 </html>
