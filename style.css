@@ -23,8 +23,56 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Romantic Valentine Text Effect */
 h1 {
-  color: #ff4d6d;
+  font-size: 50px;
+  font-weight: bold;
+  color: #ff4d6d; /* Romantic pinkish-red */
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 77, 109, 0.8), 
+               0 0 20px rgba(255, 77, 109, 0.6),
+               0 0 30px rgba(255, 77, 109, 0.4);
+  animation: heartbeat 1.5s infinite alternate, glow 3s infinite alternate;
+  position: relative;
+}
+
+/* Heartbeat effect */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Glow animation */
+@keyframes glow {
+  0% { text-shadow: 0 0 10px rgba(255, 77, 109, 0.8), 
+                   0 0 20px rgba(255, 77, 109, 0.6),
+                   0 0 30px rgba(255, 77, 109, 0.4); }
+  100% { text-shadow: 0 0 20px rgba(255, 77, 109, 1), 
+                     0 0 30px rgba(255, 77, 109, 0.8),
+                     0 0 40px rgba(255, 77, 109, 0.6); }
+}
+
+/* Floating hearts effect */
+h1::after {
+  content: "💕 💖 💕";
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  animation: floatingHearts 2s infinite;
+}
+
+@keyframes floatingHearts {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-10px); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Mobile Responsiveness */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 30px;
+  }
 }
 
 p {
@@ -125,63 +173,120 @@ p {
 
 /* Flipbook Animation */
 .gallery {
-  position: relative;
+  --d: 10s; /* Animation duration */
+  display: grid;
+  place-items: center;
   width: 220px;
-  height: 220px;
-  margin: 20px auto;
+  margin-left: 220px;
 }
 
-.gallery img {
-  position: absolute;
+.gallery > img {
+  grid-area: 1/1;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   border: 10px solid #f2f2f2;
   box-shadow: 0 0 4px #0007;
-  animation: slide 15s infinite;
-  opacity: 0;
+  z-index: 2;
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
 }
 
-.gallery img:nth-child(1) {
-  animation-delay: 0s;
-}
-.gallery img:nth-child(2) {
-  animation-delay: 3s;
-}
-.gallery img:nth-child(3) {
-  animation-delay: 6s;
-}
-.gallery img:nth-child(4) {
-  animation-delay: 9s;
-}
-.gallery img:nth-child(5) {
-  animation-delay: 12s;
-}
+/* Ensuring all 17 images have different animation delays & rotation angles */
+.gallery > img:nth-child(1)  { animation-delay: calc(0 * var(--d));   --r: 16deg; }
+.gallery > img:nth-child(2)  { animation-delay: calc(-0.2 * var(--d)); --r: -1deg; }
+.gallery > img:nth-child(3)  { animation-delay: calc(-0.4 * var(--d)); --r: -19deg; }
+.gallery > img:nth-child(4)  { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
+.gallery > img:nth-child(5)  { animation-delay: calc(-0.8 * var(--d)); --r: -8deg; }
+.gallery > img:nth-child(6)  { animation-delay: calc(-1.0 * var(--d)); --r: 10deg; }
+.gallery > img:nth-child(7)  { animation-delay: calc(-1.2 * var(--d)); --r: -12deg; }
+.gallery > img:nth-child(8)  { animation-delay: calc(-1.4 * var(--d)); --r: 5deg; }
+.gallery > img:nth-child(9)  { animation-delay: calc(-1.6 * var(--d)); --r: -3deg; }
+.gallery > img:nth-child(10) { animation-delay: calc(-1.8 * var(--d)); --r: 7deg; }
+.gallery > img:nth-child(11) { animation-delay: calc(-2.0 * var(--d)); --r: -9deg; }
+.gallery > img:nth-child(12) { animation-delay: calc(-2.2 * var(--d)); --r: 4deg; }
+.gallery > img:nth-child(13) { animation-delay: calc(-2.4 * var(--d)); --r: -15deg; }
+.gallery > img:nth-child(14) { animation-delay: calc(-2.6 * var(--d)); --r: 13deg; }
+.gallery > img:nth-child(15) { animation-delay: calc(-2.8 * var(--d)); --r: -5deg; }
+.gallery > img:nth-child(16) { animation-delay: calc(-3.0 * var(--d)); --r: 8deg; }
+.gallery > img:nth-child(17) { animation-delay: calc(-3.2 * var(--d)); --r: -7deg; }
 
 @keyframes slide {
-  0% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    z-index: 5;
+  10% { transform: translateX(120%) rotate(var(--r)); }
+  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+}
+
+@keyframes z-order {
+  10%, 20% { z-index: 1; }
+  80% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+  10%, 20% { z-index: 1; }
+  90% { z-index: 2; }
+}
+
+/* Ensuring compatibility across browsers */
+@-webkit-keyframes slide {
+  10% { transform: translateX(120%) rotate(var(--r)); }
+  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+}
+
+@-webkit-keyframes z-order {
+  10%, 20% { z-index: 1; }
+  80% { z-index: 2; }
+}
+
+@-webkit-keyframes z-order-last {
+  10%, 20% { z-index: 1; }
+  90% { z-index: 2; }
+}
+
+/* Shine Text Effect */
+#headline-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+#shine {
+  font-size: 60px;
+  font-weight: bold;
+  color: rgba(255, 0, 102, 0.3);
+  z-index: 10;
+  background: linear-gradient(to right, #222, #fff, #222);
+  background-size: 150px;
+  background-clip: text;
+  animation: shine 3s infinite;
+  text-shadow: 0 0px 0px rgba(233, 85, 189, 0.419);
+}
+
+/* Keyframes for Shine Effect */
+@keyframes shine {
+  0%, 10% { background-position: -1000px; }
+  20% { background-position: left; }
+  90% { background-position: right; }
+  100% { background-position: 1000px; }
+}
+
+@-webkit-keyframes shine {
+  0%, 10% { background-position: -1000px; }
+  20% { background-position: left; }
+  90% { background-position: right; }
+  100% { background-position: 1000px; }
+}
+
+/* Mobile Responsiveness */
+@media only screen and (max-width: 600px) {
+  #shine {
+    font-size: 22px;
   }
-  25% {
-    opacity: 1;
-    transform: scale(0.95) translateY(-10px);
-    z-index: 4;
-  }
-  50% {
-    opacity: 1;
-    transform: scale(0.9) translateY(-20px);
-    z-index: 3;
-  }
-  75% {
-    opacity: 1;
-    transform: scale(0.85) translateY(-30px);
-    z-index: 2;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.8) translateY(-40px);
-    z-index: 1;
+  
+  .gallery {
+    width: 150px;
+    margin-left: 60px;
   }
 }
+
+
