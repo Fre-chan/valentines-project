@@ -81,6 +81,12 @@ p {
   background: #e63950;
 }
 
+#yay-page {
+  display: none; /* Ensure it's hidden initially */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
 
 /* Hide Sections Initially */
 .hidden {

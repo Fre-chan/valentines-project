@@ -20,8 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (yesBtn) {
     yesBtn.addEventListener("click", function () {
       mainContent.style.display = "none"; // Hide main content
-      yayPage.classList.remove("hidden");
-      yayPage.style.display = "block";
+      yayPage.style.display = "block"; // Show yay page
+      setTimeout(() => {
+        yayPage.style.opacity = "1"; // Fade-in effect
+      }, 100);
     });
   }
 
