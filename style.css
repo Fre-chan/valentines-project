@@ -140,15 +140,11 @@ p {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border: 8px solid #fff;
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3), /* Outer shadow */
-              -4px -4px 10px rgba(255, 255, 255, 0.5); /* Soft inner highlight */
-  transform-origin: center; /* Makes flipping more realistic */
+  border: 10px solid #f2f2f2;
+  box-shadow: 0 0 4px #0007;
   z-index: 2;
   animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
-
 
 /* Ensuring all 17 images have different animation delays & rotation angles */
 .gallery > img:nth-child(1)  { animation-delay: calc(0 * var(--d));   --r: 16deg; }
