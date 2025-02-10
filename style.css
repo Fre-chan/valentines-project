@@ -125,23 +125,24 @@ p {
 
 /* Flipbook Animation */
 /* Center Flipbook */
+/* Center the Flipbook */
 .gallery {
-  --d: 10s;
-  /* duration */
   display: grid;
-  place-items: center; /* Center both horizontally and vertically */
-  width: 150px;
-  margin-left: 60px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive Grid */
+  gap: 10px; /* Space between images */
+  justify-content: center; /* Center align */
+  align-items: center;
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
 }
 
 .gallery > img {
-  grid-area: 1/1;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border: 10px solid #f2f2f2;
-  box-shadow: 0 0 4px #0007;
-  z-index: 2;
+  border: 5px solid #f2f2f2; /* Outline around each image */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
 }
 

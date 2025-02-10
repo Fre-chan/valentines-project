@@ -11,8 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loveSong) {
       loveSong.currentTime = 127; // Start at 2:07
       loveSong.volume = 0.3; // Set volume to 30%
-      loveSong.play();
+      loveSong.play().catch(error => {
+        console.log("Autoplay blocked, waiting for user interaction.");
+      });
     }
+  }
+
+  // 🎶 Play song when user interacts with the page (Fix autoplay block)
+  function enableAudio() {
+    playSong();
+    document.removeEventListener("click", enableAudio);
+  }
+
+  // Check if we are on the flipbook page
+  if (window.location.pathname.includes("flipbook.html")) {
+    // Play song after user clicks anywhere
+    document.addEventListener("click", enableAudio);
   }
 
   // "No" button runs away when hovered
