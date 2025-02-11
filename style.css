@@ -18,7 +18,7 @@ body {
 
 .container {
   background: white;
-  padding: 0px;
+  padding: 10px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
@@ -125,54 +125,56 @@ p {
 
 /* Flipbook Animation */
 /* Center Flipbook */
+/* Flipbook Container */
 .gallery {
   --d: 10s; /* Duration of full flip animation */
   display: grid;
   place-items: center; /* Center horizontally & vertically */
-  width: 200px; /* Adjust width */
-  height: 250px; /* Adjust height */
+  width: 250px; /* Bigger width */
+  height: 300px; /* Bigger height */
   position: relative;
 }
 
+/* Flipbook Images */
 .gallery > img {
   grid-area: 1/1;
   width: 100%;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: cover;
   border: 10px solid white; /* Polaroid-style border */
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   position: absolute;
-  z-index: 1; /* Ensuring proper stacking */
   opacity: 0; /* Initially hidden */
-  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
   transform-origin: center;
+  animation: flip var(--d) linear infinite;
 }
 
-/* Ensuring all 17 images have different animation delays & rotation angles */
-.gallery > img:nth-child(1)  { animation-delay: calc(0 * var(--d));   --r: 16deg; }
-.gallery > img:nth-child(2)  { animation-delay: calc(-0.2 * var(--d)); --r: -1deg; }
-.gallery > img:nth-child(3)  { animation-delay: calc(-0.4 * var(--d)); --r: -19deg; }
-.gallery > img:nth-child(4)  { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
-.gallery > img:nth-child(5)  { animation-delay: calc(-0.8 * var(--d)); --r: -8deg; }
-.gallery > img:nth-child(6)  { animation-delay: calc(-1.0 * var(--d)); --r: 10deg; }
-.gallery > img:nth-child(7)  { animation-delay: calc(-1.2 * var(--d)); --r: -12deg; }
-.gallery > img:nth-child(8)  { animation-delay: calc(-1.4 * var(--d)); --r: 5deg; }
-.gallery > img:nth-child(9)  { animation-delay: calc(-1.6 * var(--d)); --r: -3deg; }
-.gallery > img:nth-child(10) { animation-delay: calc(-1.8 * var(--d)); --r: 7deg; }
-.gallery > img:nth-child(11) { animation-delay: calc(-2.0 * var(--d)); --r: -9deg; }
-.gallery > img:nth-child(12) { animation-delay: calc(-2.2 * var(--d)); --r: 4deg; }
-.gallery > img:nth-child(13) { animation-delay: calc(-2.4 * var(--d)); --r: -15deg; }
-.gallery > img:nth-child(14) { animation-delay: calc(-2.6 * var(--d)); --r: 13deg; }
-.gallery > img:nth-child(15) { animation-delay: calc(-2.8 * var(--d)); --r: -5deg; }
-.gallery > img:nth-child(16) { animation-delay: calc(-3.0 * var(--d)); --r: 8deg; }
-.gallery > img:nth-child(17) { animation-delay: calc(-3.2 * var(--d)); --r: -7deg; }
+/* Assigning random rotation */
+.gallery > img:nth-child(1)  { animation-delay: 0s;    --r: 16deg; }
+.gallery > img:nth-child(2)  { animation-delay: 0.6s;  --r: -1deg; }
+.gallery > img:nth-child(3)  { animation-delay: 1.2s;  --r: -19deg; }
+.gallery > img:nth-child(4)  { animation-delay: 1.8s;  --r: 6deg; }
+.gallery > img:nth-child(5)  { animation-delay: 2.4s;  --r: -8deg; }
+.gallery > img:nth-child(6)  { animation-delay: 3.0s;  --r: 10deg; }
+.gallery > img:nth-child(7)  { animation-delay: 3.6s;  --r: -12deg; }
+.gallery > img:nth-child(8)  { animation-delay: 4.2s;  --r: 5deg; }
+.gallery > img:nth-child(9)  { animation-delay: 4.8s;  --r: -3deg; }
+.gallery > img:nth-child(10) { animation-delay: 5.4s;  --r: 7deg; }
+.gallery > img:nth-child(11) { animation-delay: 6.0s;  --r: -9deg; }
+.gallery > img:nth-child(12) { animation-delay: 6.6s;  --r: 4deg; }
+.gallery > img:nth-child(13) { animation-delay: 7.2s;  --r: -15deg; }
+.gallery > img:nth-child(14) { animation-delay: 7.8s;  --r: 13deg; }
+.gallery > img:nth-child(15) { animation-delay: 8.4s;  --r: -5deg; }
+.gallery > img:nth-child(16) { animation-delay: 9.0s;  --r: 8deg; }
+.gallery > img:nth-child(17) { animation-delay: 9.6s;  --r: -7deg; }
 
-/* Flipbook Animation */
-@keyframes slide {
-  0%, 100% { opacity: 0; transform: translateX(100%) rotate(var(--r)); } /* Move to the right */
-  10%, 90% { opacity: 1; transform: translateX(0%) rotate(var(--r)); }  /* Show in place */
+/* Flip Animation */
+@keyframes flip {
+  0%   { opacity: 0; transform: rotate(var(--r)) translateY(100%) scale(0.9); z-index: 1; }
+  5%   { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: 10; }
+  95%  { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: 10; }
+  100% { opacity: 0; transform: rotate(var(--r)) translateY(-100%) scale(0.9); z-index: 1; }
 }
-
 /* Adjust Stacking Order */
 @keyframes z-order {
   0%, 100% { z-index: 1; } /* Default behind */
@@ -185,11 +187,6 @@ p {
 }
 
 /* Ensuring compatibility across browsers */
-@-webkit-keyframes slide {
-  10% { transform: translateX(120%) rotate(var(--r)); }
-  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
-}
-
 @-webkit-keyframes z-order {
   10%, 20% { z-index: 1; }
   80% { z-index: 2; }
