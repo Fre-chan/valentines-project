@@ -127,7 +127,6 @@ p {
 /* Center Flipbook */
 /* Flipbook Container */
 .gallery {
-  --d: 17s; /* Duration of full flip animation */
   display: grid;
   place-items: center; /* Center horizontally & vertically */
   width: 250px; /* Bigger width */
@@ -146,56 +145,40 @@ p {
   position: absolute;
   opacity: 0; /* Initially hidden */
   transform-origin: center;
-  animation: flip var(--d) linear infinite;
+  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-/* Assigning random rotation */
-.gallery > img:nth-child(1)  { animation-delay: 0s;    --r: 16deg; }
-.gallery > img:nth-child(2)  { animation-delay: 2s;  --r: -1deg; }
-.gallery > img:nth-child(3)  { animation-delay: 4s;  --r: -19deg; }
-.gallery > img:nth-child(4)  { animation-delay: 6s;  --r: 6deg; }
-.gallery > img:nth-child(5)  { animation-delay: 8s;  --r: -8deg; }
-.gallery > img:nth-child(6)  { animation-delay: 10s;  --r: 10deg; }
-.gallery > img:nth-child(7)  { animation-delay: 12s;  --r: -12deg; }
-.gallery > img:nth-child(8)  { animation-delay: 14s;  --r: 5deg; }
-.gallery > img:nth-child(9)  { animation-delay: 16s;  --r: -3deg; }
-.gallery > img:nth-child(10) { animation-delay: 18s;  --r: 7deg; }
-.gallery > img:nth-child(11) { animation-delay: 20s;  --r: -9deg; }
-.gallery > img:nth-child(12) { animation-delay: 22s;  --r: 4deg; }
-.gallery > img:nth-child(13) { animation-delay: 24s;  --r: -15deg; }
-.gallery > img:nth-child(14) { animation-delay: 26s;  --r: 13deg; }
-.gallery > img:nth-child(15) { animation-delay: 28s;  --r: -5deg; }
-.gallery > img:nth-child(16) { animation-delay: 30s;  --r: 8deg; }
-.gallery > img:nth-child(17) { animation-delay: 32s;  --r: -7deg; }
+/* Assign individual stacking order and random rotation */
+.gallery > img:nth-child(1)  { animation: stack-in 1s ease-in-out 0s forwards; --r: 16deg; }
+.gallery > img:nth-child(2)  { animation: stack-in 1s ease-in-out 1s forwards; --r: -1deg; }
+.gallery > img:nth-child(3)  { animation: stack-in 1s ease-in-out 2s forwards; --r: -19deg; }
+.gallery > img:nth-child(4)  { animation: stack-in 1s ease-in-out 3s forwards; --r: 6deg; }
+.gallery > img:nth-child(5)  { animation: stack-in 1s ease-in-out 4s forwards; --r: -8deg; }
+.gallery > img:nth-child(6)  { animation: stack-in 1s ease-in-out 5s forwards; --r: 10deg; }
+.gallery > img:nth-child(7)  { animation: stack-in 1s ease-in-out 6s forwards; --r: -12deg; }
+.gallery > img:nth-child(8)  { animation: stack-in 1s ease-in-out 7s forwards; --r: 5deg; }
+.gallery > img:nth-child(9)  { animation: stack-in 1s ease-in-out 8s forwards; --r: -3deg; }
+.gallery > img:nth-child(10) { animation: stack-in 1s ease-in-out 9s forwards; --r: 7deg; }
+.gallery > img:nth-child(11) { animation: stack-in 1s ease-in-out 10s forwards; --r: -9deg; }
+.gallery > img:nth-child(12) { animation: stack-in 1s ease-in-out 11s forwards; --r: 4deg; }
+.gallery > img:nth-child(13) { animation: stack-in 1s ease-in-out 12s forwards; --r: -15deg; }
+.gallery > img:nth-child(14) { animation: stack-in 1s ease-in-out 13s forwards; --r: 13deg; }
+.gallery > img:nth-child(15) { animation: stack-in 1s ease-in-out 14s forwards; --r: -5deg; }
+.gallery > img:nth-child(16) { animation: stack-in 1s ease-in-out 15s forwards; --r: 8deg; }
+.gallery > img:nth-child(17) { animation: stack-in-final 1s ease-in-out 16s forwards; --r: -7deg; } /* Last image stays on top */
 
-/* Flip Animation */
-@keyframes flip {
+/* Stacking Keyframes */
+@keyframes stack-in {
   0%   { opacity: 0; transform: rotate(var(--r)) translateY(100%) scale(0.9); z-index: 1; }
-  5%   { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: 10; }
-  95%  { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: 10; }
-  100% { opacity: 0; transform: rotate(var(--r)) translateY(-100%) scale(0.9); z-index: 1; }
-}
-/* Adjust Stacking Order */
-@keyframes z-order {
-  0%, 100% { z-index: 1; } /* Default behind */
-  50% { z-index: 10; }  /* Bring current image forward */
+  100% { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: var(--z); }
 }
 
-@keyframes z-order-last {
-  10%, 20% { z-index: 1; }
-  90% { z-index: 2; }
+/* Last image stays on top */
+@keyframes stack-in-final {
+  0%   { opacity: 0; transform: rotate(var(--r)) translateY(100%) scale(0.9); z-index: 1; }
+  100% { opacity: 1; transform: rotate(var(--r)) translateY(0%) scale(1); z-index: 100; } /* Highest z-index */
 }
 
-/* Ensuring compatibility across browsers */
-@-webkit-keyframes z-order {
-  10%, 20% { z-index: 1; }
-  80% { z-index: 2; }
-}
-
-@-webkit-keyframes z-order-last {
-  10%, 20% { z-index: 1; }
-  90% { z-index: 2; }
-}
 
 /* Shine Text Effect */
 #headline-container {
